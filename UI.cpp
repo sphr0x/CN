@@ -2,7 +2,6 @@
 #include "UI.h"
 #include "ComplexNumber.h"
 #include <iostream>
-#include <string>
 
 void UI::printComplex(ComplexNumber Print) {									// 4 a) ->..
 	std::cout << Print.toString() << std::endl;

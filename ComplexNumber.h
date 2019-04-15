@@ -17,8 +17,11 @@ public:													// public: declare functions
 	*/
 	ComplexNumber copyNum(const ComplexNumber& cinNum);
 	ComplexNumber add2Num(const ComplexNumber& cinNum);	// ..-> 3 c)
+
 	ComplexNumber inPolar(const ComplexNumber& cinNum);	// 6 a)
-	ComplexNumber inKart(ComplexNumber cinNum);	// 6 a)
+	void P();
+	ComplexNumber inKart(ComplexNumber cinNum);			// 6 a)
+	void K();
 
 	ComplexNumber(float re = 0.0, float im = 1.0);		// constructor: init vari
 	~ComplexNumber();									// destructor: release disc space

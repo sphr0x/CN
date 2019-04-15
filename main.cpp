@@ -40,10 +40,30 @@ int main()
 	/*	printComplex uses tostring()
 	std::cout << cNum1.toString() << std::endl;							// 1 b)
 	*/
-
-	polar=polar.inPolar(rCe);											// test 6 a) iO
+	/*
+	polar=polar.inPolar(rCe);											// test 6 a+b) iO
 	getPolar.printComplexPolar(polar);									// UI print CN POLAR
 	
-	kart=kart.inKart(polar);											// test 6 a) iO
+	kart=kart.inKart(polar);											// test 6 a+b) iO
 	getKart.printComplex(kart);											// UI print CN KART
+	*/
+
+	polar = getPolar.getComplex();										// inPolar/inKart fkt shorter and 'void'
+	
+	polar.P();
+	getPolar.printComplexPolar(polar);
+	polar.K();
+	getPolar.printComplex(polar);
+
 }
+
+
+/*						### 6 b) - Begründung des Ortes der Implementierung ###
+
+	Erweiterung in der ComplexNumber-Klasse, da die Verkapselung damit weiterhin vollständig ist und
+	das Hauptprogramm nicht überladen bzw. unübersichtlich wird. Dazu trägt selbstverständlich auch die UI-
+	Verkapselung bzgl. der Ausgabe bei.
+	Folglich wird damit auch der Zugriff außerhalb der Klassen gewährleistet, was unter Anderem Sinn und Zweck
+	der objektorientieren Programmierung ist.
+
+*/

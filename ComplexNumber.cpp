@@ -48,6 +48,10 @@ ComplexNumber ComplexNumber::inPolar(const ComplexNumber& cinNum) {
 	// std::cout << "Komplexe Zahl in Polarform: " << cPol.m_r << " * e^i*" << cPol.m_phi << std::endl;
 	return cPol;
 }
+void ComplexNumber::P() {
+	m_r = sqrt((m_real*m_real) + (m_imag * m_imag));
+	m_phi = atan2(m_imag, m_real);
+}
 
 ComplexNumber ComplexNumber::inKart(ComplexNumber cinNum) {
 	ComplexNumber cKart;
@@ -55,6 +59,10 @@ ComplexNumber ComplexNumber::inKart(ComplexNumber cinNum) {
 	cKart.m_imag = cinNum.m_r*(sin(cinNum.m_phi));
 	// std::cout << "Komplexe Zahl in kartesischer Form: " << cKart.m_real << ", " << cKart.m_imag << " i" << std::endl;
 	return cKart;
+}
+void ComplexNumber::K() {
+	m_real = m_r * (cos(m_phi));
+	m_imag = m_r * (sin(m_phi));
 }
 
 /* constructor for initialisation of member_vari -> */
