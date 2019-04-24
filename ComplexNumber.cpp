@@ -3,79 +3,62 @@
 #include "ComplexNumber.h"
 #include <math.h>
 
-/*	implement code of member_function in cpp file !! */
+/* implement code of member_function in cpp file */
 
-std::string ComplexNumber::toString() {										// 1 b)
-	return std::to_string(m_real) + ", " + std::to_string(m_imag) + " i";
-}
-
-std::string ComplexNumber::toString2() {
-	return std::to_string(m_r) + " * e^i*" + std::to_string(m_phi);
-}
-
-void ComplexNumber::setComplex(float r,float i) {							// 3 c) ->..
-	m_real = r;
-	m_imag = i;
-}
-
-/*
-std::string ComplexNumber::getRe() {												
-	return std::to_string(m_real);
-}
-std::string ComplexNumber::getIm() {
-	return std::to_string(m_imag);
-}
-*/
-
-ComplexNumber ComplexNumber::copyNum(const ComplexNumber& cinNum) {
-	ComplexNumber input;
-	input.m_real = cinNum.m_real;
-	input.m_imag = cinNum.m_imag;
-	return input;
-}
-
-ComplexNumber ComplexNumber::add2Num(const ComplexNumber& cinNum) {				// ..-> 3 c)
-	ComplexNumber cResult;
-	cResult.m_real = this->m_real + cinNum.m_real;
-	cResult.m_imag = this->m_imag + cinNum.m_imag;
-	return cResult;
-}
-
-ComplexNumber ComplexNumber::inPolar(const ComplexNumber& cinNum) {
-	ComplexNumber cPol = cinNum;
-	cPol.m_r = sqrt((cPol.m_real*cPol.m_real) + (cPol.m_imag * cPol.m_imag));
-	cPol.m_phi = atan2(cPol.m_imag, cPol.m_real);
-	// std::cout << "Komplexe Zahl in Polarform: " << cPol.m_r << " * e^i*" << cPol.m_phi << std::endl;
-	return cPol;
-}
-void ComplexNumber::P() {
-	m_r = sqrt((m_real*m_real) + (m_imag * m_imag));
+void ComplexNumber::updateTrigonometric() {
+	m_r = sqrt((m_real * m_real) + (m_imag * m_imag));
 	m_phi = atan2(m_imag, m_real);
 }
-
-ComplexNumber ComplexNumber::inKart(ComplexNumber cinNum) {
-	ComplexNumber cKart;
-	cKart.m_real = cinNum.m_r*(cos(cinNum.m_phi));
-	cKart.m_imag = cinNum.m_r*(sin(cinNum.m_phi));
-	// std::cout << "Komplexe Zahl in kartesischer Form: " << cKart.m_real << ", " << cKart.m_imag << " i" << std::endl;
-	return cKart;
-}
-void ComplexNumber::K() {
+void ComplexNumber::updateCartesian() {
 	m_real = m_r * (cos(m_phi));
 	m_imag = m_r * (sin(m_phi));
 }
-
-/* constructor for initialisation of member_vari -> */
-
-ComplexNumber::ComplexNumber(float re, float im)
-	: m_real(re), m_imag(im) {
-
-	float m_r = sqrt(m_real*m_real + m_imag * m_imag);
-	float m_phi = atan2(m_imag, m_real);
+std::string ComplexNumber::toString() {											
+    return std::to_string(m_real) + ", " + std::to_string(m_imag) + " i";
+}
+std::string ComplexNumber::toStringPolar() {									
+    return std::to_string(m_r) + " * e^i*" + std::to_string(m_phi);
+}
+float ComplexNumber::getReal() const {
+    return m_real;
+}
+void ComplexNumber::setReal(float mReal) {
+    m_real = mReal;
+    updateTrigonometric();
+}
+float ComplexNumber::getImag() const {
+    return m_imag;
+}
+void ComplexNumber::setImag(float mImag) {
+    m_imag = mImag;
+    updateTrigonometric();
+}
+float ComplexNumber::getR() const {
+    return m_r;
+}
+void ComplexNumber::setR(float mR) {
+    m_r = mR;
+    updateCartesian();
+}
+float ComplexNumber::getPhi() const {
+    return m_phi;
+}
+void ComplexNumber::setPhi(float mPhi) {
+    m_phi = mPhi;
+    updateCartesian();
+}
+/* c (Result) = a (this object) + b (cinNum) */
+ComplexNumber ComplexNumber::add(const ComplexNumber &cinNum) const {                
+    return ComplexNumber(cinNum.m_real + m_real, cinNum.m_imag + m_imag);
+}
+/* constructor for initialisation of m_variables -> */
+ComplexNumber::ComplexNumber(const float re, const float im)						
+: m_real(re), m_imag(im) {
+	updateTrigonometric();
+}
+/* copy-constructor */
+ComplexNumber::ComplexNumber(const ComplexNumber &com)								
+: m_real(com.m_real), m_imag(com.m_imag), m_r(com.m_r),m_phi(com.m_phi) {
 }
 
-/* destructor to release disc space */
-
-ComplexNumber::~ComplexNumber()
-{
-}
+ComplexNumber::~ComplexNumber() = default;

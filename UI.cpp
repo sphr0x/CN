@@ -3,29 +3,30 @@
 #include "ComplexNumber.h"
 #include <iostream>
 
-void UI::printComplex(ComplexNumber Print) {									// 4 a) ->..
-	std::cout << Print.toString() << std::endl;
+void UI::printComplex(ComplexNumber Print) {                                    
+    std::cout << Print.toString() << std::endl;
 }
-
 void UI::printComplexPolar(ComplexNumber Print) {
-	std::cout << Print.toString2() << std::endl;
+    std::cout << Print.toStringPolar() << std::endl;
 }
 
 ComplexNumber UI::getComplex() {
-	ComplexNumber rPrint;
-	float r, i;
-
-	std::cout << "bitte realteil und danach imaginaerteil eingeben:" << std::endl;
-	std::cin >> r >> i;
-	rPrint.setComplex(r, i);
-	return rPrint;
+    float r, i;
+    std::cout << "Bitte Realteil und danach Imaginaerteil eingeben:" << std::endl;
+    std::cin >> r >> i;
+    return ComplexNumber(r, i);
+}
+ComplexNumber UI::getComplexTrigonometric() {
+    float r, phi;
+    std::cout << "Bitte r(Laenge) und danach phi(Winkel) eingeben:" << std::endl;
+    std::cin >> r >> phi;
+    return ComplexNumber::fromTrigonometric(r, phi);
 }
 
-UI::UI()																		// ..-> 4 a)
+UI::UI()                                                                        
 {
 }
 
 
-UI::~UI()																				
-{
+UI::~UI() {
 }

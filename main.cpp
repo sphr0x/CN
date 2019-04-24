@@ -3,67 +3,46 @@
 #include "ComplexNumber.h"
 #include "UI.h"
 
-int main()
-{
-	ComplexNumber cNum1;												// 1 b) 
-	ComplexNumber cNum2;												// 3 c) + 4 b) ->..
-	const ComplexNumber& rC2 = cNum2;
-	ComplexNumber cResult;
-	const ComplexNumber& rCe = cResult;
-	UI getC1,getC2,getC3,getCopy,getPolar,getKart;															
-	ComplexNumber copy;
-	ComplexNumber polar,kart;
-	// float Num1, Num2;		
+		/* ### C23 – Laborübung 1 - Komplexe Zahlen sollen als Objekte realisiert werden. ### */
 
-	cNum1 = getC1.getComplex();											// UI get CN
-	cNum2 = getC2.getComplex();
-
-	/*			==
-	std::cin >> Num1 >> Num2;					
-	cNum2.setComplex(Num1, Num2);
-	*/
-	cResult = cNum1.add2Num(rC2);										
+int main() {
+    ComplexNumber cNum1 = ComplexNumber(2,5);							// 1 b)
+    ComplexNumber cNum2 = ComplexNumber(2,-1);							// 3 c) set value
+    const ComplexNumber &rC2 = cNum2;
+    ComplexNumber cResult;
+    UI ui;
 	
-	getC2.printComplex(cNum2);											// UI print CNs
-	getC1.printComplex(cNum1);
-	getC3.printComplex(cResult);
-	/*			==
-	std::cout << cNum2.toString() << " + " << cNum1.toString() << " = " << cResult.toString() << std::endl;
-	*/
-	copy = cNum2.copyNum(rC2);	
-
-	getCopy.printComplex(copy);											// UI print CN COPY
-	/*			==
-	std::cout << copy.toString() << std::endl;
-	*/
-																		// ..-> 3 c) +  4 b)
-	/*	printComplex uses tostring()
-	std::cout << cNum1.toString() << std::endl;							// 1 b)
-	*/
-	/*
-	polar=polar.inPolar(rCe);											// test 6 a+b) iO
-	getPolar.printComplexPolar(polar);									// UI print CN POLAR
-	
-	kart=kart.inKart(polar);											// test 6 a+b) iO
-	getKart.printComplex(kart);											// UI print CN KART
-	*/
-
-	polar = getPolar.getComplex();										// inPolar/inKart fkt shorter and 'void'
-	
-	polar.P();
-	getPolar.printComplexPolar(polar);
-	polar.K();
-	getPolar.printComplex(polar);
-
+	ui.printComplex(cNum1);												// 4 b) print value
+	cNum1 = ui.getComplex();											// 4 b) set value UI
+    cResult = cNum1.add(cNum2);											// 3 c) add 2 numbers
+	ui.printComplex(cResult);											// 4 b)
+	cResult = ComplexNumber(rC2);										// 3 c) copy number
+	ui.printComplex(cResult);											// 4 b)
+	cResult = ui.getComplex();											// 6 a)
+    ui.printComplexPolar(cResult);
+    ui.printComplex(cResult);
+	return 0;
+}
+		
+void inPolar(ComplexNumber p) {
+	float re = p.getReal();
+	float im = p.getImag();
+	p.setReal(re);
+	p.setImag(im);
+}
+void inKart(ComplexNumber p) {
+	float r = p.getR();
+	float phi = p.getPhi();
+	p.setR(r);
+	p.setPhi(phi);
 }
 
+/*						### 6 b) - Begruendung des Ortes der Implementierung ###
 
-/*						### 6 b) - Begründung des Ortes der Implementierung ###
-
-	Erweiterung in der ComplexNumber-Klasse, da die Verkapselung damit weiterhin vollständig ist und
-	das Hauptprogramm nicht überladen bzw. unübersichtlich wird. Dazu trägt selbstverständlich auch die UI-
-	Verkapselung bzgl. der Ausgabe bei.
-	Folglich wird damit auch der Zugriff außerhalb der Klassen gewährleistet, was unter Anderem Sinn und Zweck
-	der objektorientieren Programmierung ist.
+	Obwohl beide Varianten nutzbar sind, ist es sinnvoll die Erweiterung in der ComplexNumber-Klasse zu 
+	implementieren, da die Verkapselung/Struktur des Programms weiterhin vollstaendig ist und das 
+	Hauptprogramm nicht unuebersichtlich wird. Das zusaetzliche Auslesen und Einlesen von private 
+	Membervariablen ueber Floatvariablen in der main.cpp implementierten Funktionen ist umstaendlich 
+	und nicht Sinn und Zweck der objektorientieren Programmierung.
 
 */

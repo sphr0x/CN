@@ -5,15 +5,12 @@
 class UI													// 4 a)
 {
 public:
-
-	void printComplex(ComplexNumber Print);
-	void printComplexPolar(ComplexNumber Print);
-	ComplexNumber getComplex();
-
+	void printComplex(ComplexNumber Print);					// 4 a)
+	void printComplexPolar(ComplexNumber Print);			// optional - print trigonometric number
+	ComplexNumber getComplex();								// 4 a)
 	UI();
 	~UI();
-
 private:
-
+    ComplexNumber getComplexTrigonometric();
 };
 
