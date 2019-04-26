@@ -24,28 +24,24 @@ float ComplexNumber::getReal() const {
 }
 void ComplexNumber::setReal(float mReal) {
     m_real = mReal;
-    updateTrigonometric();
 }
 float ComplexNumber::getImag() const {
     return m_imag;
 }
 void ComplexNumber::setImag(float mImag) {
-    m_imag = mImag;
-    updateTrigonometric();
+	m_imag = mImag;
 }
 float ComplexNumber::getR() const {
     return m_r;
 }
 void ComplexNumber::setR(float mR) {
-    m_r = mR;
-    updateCartesian();
+	m_r = mR;
 }
 float ComplexNumber::getPhi() const {
     return m_phi;
 }
 void ComplexNumber::setPhi(float mPhi) {
     m_phi = mPhi;
-    updateCartesian();
 }
 /* c (Result) = a (this object) + b (cinNum) */
 ComplexNumber ComplexNumber::add(const ComplexNumber &cinNum) const {                
@@ -60,5 +56,4 @@ ComplexNumber::ComplexNumber(const float re, const float im)
 ComplexNumber::ComplexNumber(const ComplexNumber &com)								
 : m_real(com.m_real), m_imag(com.m_imag), m_r(com.m_r),m_phi(com.m_phi) {
 }
-
 ComplexNumber::~ComplexNumber() = default;

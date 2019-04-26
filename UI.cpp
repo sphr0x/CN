@@ -9,7 +9,6 @@ void UI::printComplex(ComplexNumber Print) {
 void UI::printComplexPolar(ComplexNumber Print) {
     std::cout << Print.toStringPolar() << std::endl;
 }
-
 ComplexNumber UI::getComplex() {
     float r, i;
     std::cout << "Bitte Realteil und danach Imaginaerteil eingeben:" << std::endl;
@@ -22,11 +21,8 @@ ComplexNumber UI::getComplexTrigonometric() {
     std::cin >> r >> phi;
     return ComplexNumber::fromTrigonometric(r, phi);
 }
-
 UI::UI()                                                                        
 {
 }
-
-
 UI::~UI() {
 }
